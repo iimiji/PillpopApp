@@ -20,7 +20,7 @@ export default function HomeScreen() {
   const [customInstructions, setCustomInstructions] = useState('');
   const [defaultTimes, setDefaultTimes] = useState({
     Morning: '9:00 AM',
-    Lunch: '1:00 PM',
+    Lunch: '12:30 PM',
     Dinner: '8:00 PM',
   });
   const [sound, setSound] = useState();
@@ -91,7 +91,7 @@ export default function HomeScreen() {
 
   const playPopSound = async () => {
     const { sound } = await Audio.Sound.createAsync(
-      require('../../assets/pop.mp3')  // pop.mp3 경로
+      require('../../assets/pop.mp3')  // pop.mp3 
     );
     setSound(sound);
     await sound.playAsync();
@@ -99,7 +99,7 @@ export default function HomeScreen() {
 
   const playDoneSound = async () => {
     const { sound } = await Audio.Sound.createAsync(
-      require('../../assets/done.mp3')  // done.mp3 경로
+      require('../../assets/done.mp3')  // done.mp3 
     );
     setSound(sound);
     await sound.playAsync();
