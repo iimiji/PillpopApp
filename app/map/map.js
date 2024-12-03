@@ -14,8 +14,8 @@ import styles from '../styles';
 const GOOGLE_API_KEY = 'AIzaSyCfPShKzUR4Md8IF31rp7p7LnKP3OGGsnc';
 
 const Map = () => {
-  const [latitude, setLatitude] = useState(37.7749); // Default: San Francisco
-  const [longitude, setLongitude] = useState(-122.4194); // Default: San Francisco
+  const [latitude, setLatitude] = useState(37.7749);
+  const [longitude, setLongitude] = useState(-122.4194);
   const [pharmacies, setPharmacies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);

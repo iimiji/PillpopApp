@@ -24,7 +24,7 @@ export default function HomeScreen() {
     Dinner: '8:00 PM',
   });
   const [sound, setSound] = useState();
-  const [progressAnim, setProgressAnim] = useState(new Animated.Value(0)); // Animation for progress circle opacity
+  const [progressAnim, setProgressAnim] = useState(new Animated.Value(1)); // Set initial opacity to 1
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -89,7 +89,6 @@ export default function HomeScreen() {
     return unsubscribe;
   };
 
-  // Function to play the pop sound when an alarm is toggled
   const playPopSound = async () => {
     const { sound } = await Audio.Sound.createAsync(
       require('../../assets/pop.mp3')  // pop.mp3 경로
@@ -98,7 +97,6 @@ export default function HomeScreen() {
     await sound.playAsync();
   };
 
-  // Function to play the done sound when all alarms are taken
   const playDoneSound = async () => {
     const { sound } = await Audio.Sound.createAsync(
       require('../../assets/done.mp3')  // done.mp3 경로
@@ -245,27 +243,27 @@ export default function HomeScreen() {
   // Compute progress here without redeclaring `progress`
   const progress = alarms.length ? takenCount / alarms.length : 0;
 
-  // Animation trigger
+  // Animation trigger for blinking effect
   const animateProgress = () => {
     Animated.sequence([
       Animated.timing(progressAnim, {
         toValue: 0,
-        duration: 300,
-        useNativeDriver: false,
-      }),
-      Animated.timing(progressAnim, {
-        toValue: 0.5,
-        duration: 300,
-        useNativeDriver: false,
-      }),
-      Animated.timing(progressAnim, {
-        toValue: 0,
-        duration: 300,
+        duration: 150, // Brief opacity change to simulate blinking
         useNativeDriver: false,
       }),
       Animated.timing(progressAnim, {
         toValue: 1,
-        duration: 300,
+        duration: 150,
+        useNativeDriver: false,
+      }),
+      Animated.timing(progressAnim, {
+        toValue: 0,
+        duration: 150,
+        useNativeDriver: false,
+      }),
+      Animated.timing(progressAnim, {
+        toValue: 1,
+        duration: 150,
         useNativeDriver: false,
       }),
     ]).start();
